@@ -1,28 +1,20 @@
 {
-  "name": "@ohmry/electron-vue-title-bar",
-  "version": "0.1.4",
-  "private": false,
-  "main": "./dist/electron-vue-title-bar.common.js",
-  "module": "./dist/electron-vue-title-bar.umd.js",
-  "exports": {
-    ".": {
-      "import": "./dist/electron-vue-title-bar.common.js",
-      "require": "./dist/electron-vue-title-bar.umd.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "name": "preview",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name electron-vue-title-bar src/index.js",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "preview": "cd preview & yarn electron:serve"
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
   },
+  "main": "background.js",
   "dependencies": {
-    "core-js": "^3.8.3"
-  },
-  "peerDependencies": {
+    "@ohmry/electron-vue-title-bar": "../../electron-vue-title-bar",
+    "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },
   "devDependencies": {
@@ -31,14 +23,16 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "electron": "^13.0.0",
+    "electron-devtools-installer": "^3.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-cli-plugin-electron-builder": "~2.1.1"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true,
-      "vue/setup-compiler-macros": true
+      "node": true
     },
     "extends": [
       "plugin:vue/vue3-essential",
